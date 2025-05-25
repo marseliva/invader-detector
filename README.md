@@ -2,6 +2,7 @@
 
 A Java Spring Boot application for detecting invaders in radar data.  
 Provides CRUD operations for Invader and detecting invaders in radar data operation.
+In the task description, “radar images” were shown as examples, but since the provided inputs are text-based, the application currently parses and analyzes either a TXT file or a JSON object. If future requirements call for actual image input, image‐to‐text parsing (for example, using Tesseract OCR) can be integrated into the existing project structure with minimal changes.
 
 ---
 
