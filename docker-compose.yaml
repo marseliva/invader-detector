@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgresDB
+    environment:
+      POSTGRES_DB: invadersDb
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  invaders-detector-app:
+    build: .
+    container_name: invaders-detector
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/invadersDb
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_PROFILES_ACTIVE: local
+
+volumes:
+  postgres_data:
